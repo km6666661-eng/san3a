@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import '../core/routes/app_routes.dart';
 import '../services/firestore_service.dart';
-import 'signup_step_two_screen.dart';
 
 class ElFanyScreen extends StatefulWidget {
   const ElFanyScreen({Key? key}) : super(key: key);
@@ -37,17 +36,17 @@ class _ElFanyScreenState extends State<ElFanyScreen> {
     super.dispose();
   }
 
-  // دالة لاختيار صورة الفيش والتشبيه من المعرض
   Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
-
-    if (pickedFile != null) {
-      setState(() {
-        _criminalRecordImage = File(pickedFile.path);
-        _imageError = null; // إزالة رسالة الخطأ إذا تم اختيار صورة
-      });
-    }
+    setState(() {
+      _criminalRecordImage = null;
+      _imageError = null;
+    });
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('رفع الصورة غير متاح في هذا الإصدار، يمكنك المتابعة بدون صورة.'),
+      ),
+    );
   }
 
   Future<void> _goToNextStep() async {
@@ -96,12 +95,6 @@ class _ElFanyScreenState extends State<ElFanyScreen> {
       hasError = true;
     }
 
-    // التحقق من إرفاق صورة الفيش والتشبيه
-    if (_criminalRecordImage == null) {
-      _imageError = 'الرجاء إرفاق صورة الفيش والتشبيه';
-      hasError = true;
-    }
-
     if (hasError) {
       setState(() {});
       return;
@@ -132,16 +125,15 @@ class _ElFanyScreenState extends State<ElFanyScreen> {
       setState(() => _isChecking = false);
 
       // الانتقال للخطوة الثانية مع تمرير البيانات بالإضافة إلى صورة الفيش والتشبيه
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => SignUpStepTwoScreen(
-            fullName: name,
-            email: email,
-            phoneNumber: phone,
-            nationalId: nationalId,
-            criminalRecordImage: _criminalRecordImage, // تمرير الصورة للخطوة الثانية
-          ),
+        AppRoutes.signUpStepTwo,
+        arguments: SignUpFlowArgs(
+          fullName: name,
+          email: email,
+          phoneNumber: phone,
+          nationalId: nationalId,
+          criminalRecordImagePath: _criminalRecordImage?.path,
         ),
       );
     } catch (e) {

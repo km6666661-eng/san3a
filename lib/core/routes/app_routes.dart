@@ -1,13 +1,101 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import '../../features/onboarding/presentation/screens/home_page.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/onboarding/presentation/screens/placeholder_screen.dart';
+import '../../features/onboarding/presentation/screens/services_page.dart';
+import '../../features/onboarding/presentation/screens/offers_page.dart';
+import '../../features/onboarding/presentation/screens/technicians_page.dart';
+import '../../services/elfanyscreen.dart';
+import '../../services/loginscreen.dart';
+import '../../services/signupstep1.dart';
+import '../../services/signup_step_two_screen.dart';
+import '../../services/signup_otp_screen.dart';
+
+class SignUpFlowArgs {
+  final String fullName;
+  final String email;
+  final String phoneNumber;
+  final String nationalId;
+  final String? criminalRecordImagePath;
+
+  const SignUpFlowArgs({
+    required this.fullName,
+    required this.email,
+    required this.phoneNumber,
+    required this.nationalId,
+    this.criminalRecordImagePath,
+  });
+}
 
 abstract final class AppRoutes {
-  static const String onboarding = '/onboarding';
+  static const String onboarding = '/';
   static const String home = '/home';
+  static const String login = '/login';
+  static const String signUp = '/signup';
+  static const String technicianSignUp = '/signup/technician';
+  static const String signUpStepTwo = '/signup/step-two';
+  static const String signUpOtp = '/signup/otp';
+  static const String services = '/services';
+  static const String offers = '/offers';
+  static const String technicians = '/technicians';
+  static const String placeholder = '/placeholder';
 
   static Map<String, WidgetBuilder> get routes {
     return {
       onboarding: (_) => const OnboardingScreen(),
+      home: (_) => const HomePage(),
+      login: (_) => const LoginScreen(),
+      signUp: (_) => const SignUpStepOneScreen(),
+      technicianSignUp: (_) => const ElFanyScreen(),
+      services: (_) => const ServicesPage(),
+      offers: (_) => const OffersPage(),
+      technicians: (_) => const TechniciansPage(),
+      placeholder: (_) => const PlaceholderScreen(),
     };
+  }
+
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case signUpStepTwo:
+        if (settings.arguments is SignUpFlowArgs) {
+          final args = settings.arguments as SignUpFlowArgs;
+          return MaterialPageRoute(
+            builder: (_) => SignUpStepTwoScreen(
+              fullName: args.fullName,
+              email: args.email,
+              phoneNumber: args.phoneNumber,
+              nationalId: args.nationalId,
+              criminalRecordImage: args.criminalRecordImagePath == null
+                  ? null
+                  : File(args.criminalRecordImagePath!),
+            ),
+          );
+        }
+        return _errorRoute();
+      case signUpOtp:
+        if (settings.arguments is SignUpFlowArgs) {
+          final args = settings.arguments as SignUpFlowArgs;
+          return MaterialPageRoute(
+            builder: (_) => SignUpOtpScreen(
+              fullName: args.fullName,
+              email: args.email,
+              phoneNumber: args.phoneNumber,
+              nationalId: args.nationalId,
+            ),
+          );
+        }
+        return _errorRoute();
+      default:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+    }
+  }
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(
+      builder: (_) => const Scaffold(
+        body: Center(child: Text('Route not found')),
+      ),
+    );
   }
 }

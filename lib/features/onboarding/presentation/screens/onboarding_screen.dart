@@ -4,7 +4,9 @@ import '../providers/onboarding_provider.dart';
 import '../widgets/onboarding_page_content.dart';
 import '../widgets/account_type_screen.dart';
 import '../../../../core/constants/constants.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/animated_page_indicator.dart';
+import '../../models/account_type_model.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../../../../core/widgets/skip_button.dart';
 
@@ -50,7 +52,7 @@ class OnboardingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                _buildBottomSection(provider),
+                _buildBottomSection(context, provider),
               ],
             ),
           ),
@@ -88,7 +90,7 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomSection(OnboardingProvider provider) {
+  Widget _buildBottomSection(BuildContext context, OnboardingProvider provider) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.pageHorizontal,
@@ -97,7 +99,7 @@ class OnboardingScreen extends StatelessWidget {
         AppSpacing.pageBottom,
       ),
       child: provider.isLastPage
-          ? _buildLastPageButton(provider)
+          ? _buildLastPageButton(context, provider)
           : _buildNavigationButton(provider),
     );
   }
@@ -109,12 +111,15 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLastPageButton(OnboardingProvider provider) {
+  Widget _buildLastPageButton(BuildContext context, OnboardingProvider provider) {
     return PrimaryButton(
       text: AppStrings.continueText,
       isEnabled: provider.isAccountSelected,
       onPressed: () {
-        // Navigate to registration based on account type
+        final routeName = provider.selectedAccountType == AccountType.technician
+            ? AppRoutes.technicianSignUp
+            : AppRoutes.signUp;
+        Navigator.of(context).pushNamed(routeName);
       },
     );
   }
