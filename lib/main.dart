@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:san3a/elfany_details/search_screen.dart';
 import 'core/theme/app_theme.dart';
 
 import 'features/onboarding/presentation/providers/onboarding_provider.dart';
 import 'features/onboarding/presentation/screens/onboarding_screen.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,7 @@ class San3aApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => OnboardingProvider(),
       child: MaterialApp(
-        title: 'سَنْعَة',
+        title: 'صنْعَة',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         locale: const Locale('ar', 'SA'),
@@ -47,3 +49,4 @@ class San3aApp extends StatelessWidget {
     );
   }
 }
+// home: const OnboardingScreen(),
