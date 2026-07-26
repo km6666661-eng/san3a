@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../core/routes/app_routes.dart';
 import '../services/auth_service.dart';
-import 'signup_otp_screen.dart';
 
 class SignUpStepTwoScreen extends StatefulWidget {
   final String fullName;
@@ -95,17 +95,14 @@ class _SignUpStepTwoScreenState extends State<SignUpStepTwoScreen> {
 
       // الحساب اتعمل بنجاح، دلوقتي هنبعت كود تفعيل لرقم الهاتف
       if (!mounted) return;
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => SignUpOtpScreen(
-            fullName: widget.fullName,
-            email: widget.email,
-            phoneNumber: widget.phoneNumber,
-            nationalId: widget.nationalId,
-            // لو شاشة الـ OTP محتاجة الصورة كمان، تقدر تمررها هنا:
-            // criminalRecordImage: widget.criminalRecordImage,
-          ),
+        AppRoutes.signUpOtp,
+        arguments: SignUpFlowArgs(
+          fullName: widget.fullName,
+          email: widget.email,
+          phoneNumber: widget.phoneNumber,
+          nationalId: widget.nationalId,
         ),
       );
     } catch (e) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../core/routes/app_routes.dart';
 import '../services/auth_service.dart';
-import 'signupstep1.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -67,8 +67,8 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email,
         password: password,
       );
-      // لو تسجيل الدخول نجح تماماً، يمكنك الانتقال للشاشة الرئيسية هنا
-      // Navigator.pushReplacementNamed(context, '/home');
+      if (!mounted) return;
+      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (route) => false);
 
     } catch (e) {
       if (!mounted) return;
@@ -305,10 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Text('ليس لديك حساب؟ ', style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const SignUpStepOneScreen()),
-                              );
+                              Navigator.pushNamed(context, AppRoutes.signUp);
                             },
                             child: const Text(
                               'أنشئ حساباً',

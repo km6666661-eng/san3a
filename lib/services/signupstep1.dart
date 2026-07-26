@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import '../core/routes/app_routes.dart';
 import '../services/firestore_service.dart';
-import 'signup_step_two_screen.dart';
 
 class SignUpStepOneScreen extends StatefulWidget {
   const SignUpStepOneScreen({Key? key}) : super(key: key);
@@ -108,15 +108,14 @@ class _SignUpStepOneScreenState extends State<SignUpStepOneScreen> {
       if (!mounted) return;
       setState(() => _isChecking = false);
 
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => SignUpStepTwoScreen(
-            fullName: name,
-            email: email,
-            phoneNumber: phone,
-            nationalId: nationalId,
-          ),
+        AppRoutes.signUpStepTwo,
+        arguments: SignUpFlowArgs(
+          fullName: name,
+          email: email,
+          phoneNumber: phone,
+          nationalId: nationalId,
         ),
       );
     } catch (e) {

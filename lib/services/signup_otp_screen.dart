@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../core/routes/app_routes.dart';
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
 
@@ -93,9 +94,10 @@ class _SignUpOtpScreenState extends State<SignUpOtpScreen> {
       }
 
       if (!mounted) return;
-      // بيرجع لأول شاشة، واللي هي AuthGate، اللي هتعرض HomeScreen
-      // تلقائياً دلوقتي إن الحساب اتعمل والرقم اتأكد.
-      Navigator.of(context).popUntil((route) => route.isFirst);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        AppRoutes.home,
+        (route) => false,
+      );
     } catch (e) {
       if (!mounted) return;
       setState(() {

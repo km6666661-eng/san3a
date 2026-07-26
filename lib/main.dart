@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:san3a/elfany_details/search_screen.dart';
+import 'core/routes/app_routes.dart';
 import 'core/theme/app_theme.dart';
-
 import 'features/onboarding/presentation/providers/onboarding_provider.dart';
-import 'features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'services/auth_service.dart';
+import 'services/firestore_service.dart';
 
 
 void main() {
@@ -23,8 +24,12 @@ class San3aApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => OnboardingProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => OnboardingProvider()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
+        Provider(create: (_) => FirestoreService()),
+      ],
       child: MaterialApp(
         title: 'صنْعَة',
         debugShowCheckedModeBanner: false,
@@ -44,7 +49,9 @@ class San3aApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const OnboardingScreen(),
+        initialRoute: AppRoutes.onboarding,
+        routes: AppRoutes.routes,
+        onGenerateRoute: AppRoutes.onGenerateRoute,
       ),
     );
   }
