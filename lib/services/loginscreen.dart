@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/routes/app_routes.dart';
 import '../services/auth_service.dart';
+import '../features/onboarding/models/account_type_model.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final AccountType? accountType;
+
+  const LoginScreen({Key? key, this.accountType}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -18,6 +21,20 @@ class _LoginScreenState extends State<LoginScreen> {
   // متغيرات لتخزين رسائل الخطأ لكل حقل
   String? _emailError;
   String? _passwordError;
+
+  AccountType? _accountType;
+  bool _accountTypeResolved = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_accountTypeResolved) {
+      final routeArg = ModalRoute.of(context)?.settings.arguments;
+      _accountType = widget.accountType ??
+          (routeArg is AccountType ? routeArg : null);
+      _accountTypeResolved = true;
+    }
+  }
 
   @override
   void dispose() {
@@ -72,10 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     } catch (e) {
       if (!mounted) return;
-      
+
       // جلب رسالة الخطأ القادمة من AuthException
       String errorMsg = authService.errorMessage ?? e.toString();
-      
+
       setState(() {
         if (errorMsg.contains('لا يوجد حساب') || errorMsg.contains('user-not-found')) {
           _emailError = errorMsg;
@@ -93,6 +110,13 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {});
       }
     }
+  }
+
+  void _goToSignUp() {
+    final routeName = _accountType == AccountType.technician
+        ? AppRoutes.technicianSignUp
+        : AppRoutes.signUp;
+    Navigator.pushNamed(context, routeName);
   }
 
   @override
@@ -304,9 +328,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Text('ليس لديك حساب؟ ', style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
                           GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.signUp);
-                            },
+                            onTap: _goToSignUp,
                             child: const Text(
                               'أنشئ حساباً',
                               style: TextStyle(color: Color(0xFF1557D0), fontWeight: FontWeight.bold, fontSize: 13),

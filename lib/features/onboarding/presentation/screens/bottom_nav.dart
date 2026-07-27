@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'app_shared.dart';
+import 'package:san3a/elfany_details/search_screen.dart';
 
 class BottomNav extends StatelessWidget {
-  const BottomNav({super.key});
+  final String activeLabel;
+
+  const BottomNav({super.key, this.activeLabel = 'الرئيسية'});
 
   @override
   Widget build(BuildContext context) {
     final items = [
-      (Icons.home_outlined, 'الرئيسية', true),
-      (Icons.search, 'بحث', false),
-      (Icons.receipt_long_outlined, 'طلباتي', false),
-      (Icons.notifications_outlined, 'إشعارات', false),
-      (Icons.person_outline, 'حسابي', false),
+      (Icons.home_outlined, 'الرئيسية'),
+      (Icons.search, 'بحث'),
+      (Icons.receipt_long_outlined, 'طلباتي'),
+      (Icons.notifications_outlined, 'إشعارات'),
+      (Icons.person_outline, 'حسابي'),
     ];
 
     return Container(
@@ -33,10 +36,24 @@ class BottomNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: items.map((item) {
-          final (icon, label, active) = item;
+          final (icon, label) = item;
+          final active = label == activeLabel;
           final color = active ? AppColors.blue1 : AppColors.textMute;
           return GestureDetector(
-            onTap: () => goTo(context, label),
+            onTap: () {
+              if (active) return; // already on this tab
+
+              if (label == 'الرئيسية') {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              } else if (label == 'بحث') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SearchScreen()),
+                );
+              } else {
+                goTo(context, label);
+              }
+            },
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -66,5 +83,4 @@ class BottomNav extends StatelessWidget {
         }).toList(),
       ),
     );
-  }
-}
+  }}

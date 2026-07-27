@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:san3a/elfany_details/technician_profile_screen.dart';
-import 'search_screen.dart' show BottomNavItem; // بنستعمل نفس الـ BottomNavItem بتاع السكرين الأول
+import '../features/onboarding/presentation/screens/bottom_nav.dart';
 
 
 class SearchResultsScreen extends StatefulWidget {
@@ -195,51 +195,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
         ),
       ),
 
-      // Bottom Navigation Bar
-      bottomNavigationBar: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 10,
-              offset: const Offset(0, -4),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            BottomNavItem(
-              icon: Icons.person_outline,
-              label: 'حسابي',
-              isSelected: false,
-            ),
-            BottomNavItem(
-              icon: Icons.notifications_none,
-              label: 'إشعارات',
-              isSelected: false,
-              badgeCount: 3,
-            ),
-            BottomNavItem(
-              icon: Icons.article_outlined,
-              label: 'طلباتي',
-              isSelected: false,
-            ),
-            BottomNavItem(
-              icon: Icons.search,
-              label: 'بحث',
-              isSelected: true,
-            ),
-            BottomNavItem(
-              icon: Icons.home_outlined,
-              label: 'الرئيسية',
-              isSelected: false,
-            ),
-          ],
-        ),
-      ),
+      // Bottom Navigation Bar — shared widget, same one used across the app
+      bottomNavigationBar: const BottomNav(),
     );
   }
 }

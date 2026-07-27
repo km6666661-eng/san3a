@@ -116,10 +116,12 @@ class OnboardingScreen extends StatelessWidget {
       text: AppStrings.continueText,
       isEnabled: provider.isAccountSelected,
       onPressed: () {
-        final routeName = provider.selectedAccountType == AccountType.technician
-            ? AppRoutes.technicianSignUp
-            : AppRoutes.signUp;
-        Navigator.of(context).pushNamed(routeName);
+        // Go to Login first; pass along the chosen account type so that
+        // Login's "Create account" link routes to the right sign-up flow.
+        Navigator.of(context).pushNamed(
+          AppRoutes.login,
+          arguments: provider.selectedAccountType,
+        );
       },
     );
   }

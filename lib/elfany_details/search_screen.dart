@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:san3a/elfany_details/technicians_list_screen.dart';
-
+import '../features/onboarding/presentation/screens/bottom_nav.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -234,51 +234,8 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
 
-      // Bottom Navigation Bar
-      bottomNavigationBar: Container(
-        height: 72,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 10,
-              offset: const Offset(0, -4),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            BottomNavItem(
-              icon: Icons.person_outline,
-              label: 'حسابي',
-              isSelected: false,
-            ),
-            BottomNavItem(
-              icon: Icons.notifications_none,
-              label: 'إشعارات',
-              isSelected: false,
-              badgeCount: 3,
-            ),
-            BottomNavItem(
-              icon: Icons.article_outlined,
-              label: 'طلباتي',
-              isSelected: false,
-            ),
-            BottomNavItem(
-              icon: Icons.search,
-              label: 'بحث',
-              isSelected: true,
-            ),
-            BottomNavItem(
-              icon: Icons.home_outlined,
-              label: 'الرئيسية',
-              isSelected: false,
-            ),
-          ],
-        ),
-      ),
+      // Bottom Navigation Bar — shared widget, same one used across the app
+ bottomNavigationBar: const BottomNav(activeLabel: 'بحث'),
     );
   }
 }
@@ -406,77 +363,6 @@ class ServiceListItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-// Bottom Navigation Item Widget — معرّف هنا مرة واحدة بس، وسكرين النتائج
-// بيستورده من هنا عشان منعملوش تعريف مكرر لما السكرينين يشتغلوا مع بعض.
-class BottomNavItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isSelected;
-  final int? badgeCount;
-
-  const BottomNavItem({
-    super.key,
-    required this.icon,
-    required this.label,
-    required this.isSelected,
-    this.badgeCount,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFFE0EDFF) : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                icon,
-                color: isSelected ? const Color(0xFF2563EB) : const Color(0xFF64748B),
-                size: 22,
-              ),
-            ),
-            if (badgeCount != null)
-              Positioned(
-                top: 2,
-                right: 2,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFDC2626),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    '$badgeCount',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 11,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            color: isSelected ? const Color(0xFF2563EB) : const Color(0xFF64748B),
-          ),
-        ),
-      ],
     );
   }
 }
