@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:san3a/payment/payment_screen.dart';
+
 
 class BookingScreen extends StatefulWidget {
   final String technicianName;
@@ -516,7 +518,12 @@ class _BookingScreenState extends State<BookingScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const PaymentScreen()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1553D6),
                     elevation: 0,

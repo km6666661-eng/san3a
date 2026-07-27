@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:san3a/elfany_details/booking_details_screen.dart';
 import 'package:san3a/elfany_details/search_screen.dart';
+import 'package:san3a/payment/payment_screen.dart';
 import 'core/routes/app_routes.dart';
 import 'core/theme/app_theme.dart';
 import 'features/onboarding/presentation/providers/onboarding_provider.dart';
 import 'services/auth_service.dart';
 import 'services/firestore_service.dart';
+
 
 
 void main() {
