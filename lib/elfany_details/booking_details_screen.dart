@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:san3a/core/routes/app_routes.dart';
 
 import '../payment/payment_screen.dart';
 
@@ -577,10 +578,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const PaymentScreen()),
-                    );
+                   Navigator.pushNamed(context, AppRoutes.payment);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1553D6),

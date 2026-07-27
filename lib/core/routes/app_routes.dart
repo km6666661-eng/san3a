@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:san3a/payment/payment_screen.dart';
+
 
 import '../../features/onboarding/presentation/screens/booking_confirmation_screen.dart';
 import '../../features/onboarding/presentation/screens/category_list_screen.dart';
@@ -53,6 +55,7 @@ abstract final class AppRoutes {
   static const String settings = '/settings';
   static const String categories = '/categories';
   static const String placeholder = '/placeholder';
+  static const String payment = '/payment';
   static const String bookingConfirmation = '/booking-confirmation';
   static const String liveTracking = '/live-tracking';
   static const String rating = '/rating';
@@ -72,6 +75,7 @@ abstract final class AppRoutes {
       settings: (_) => const SettingsScreen(),
       categories: (_) => const CategoryListScreen(),
       placeholder: (_) => const PlaceholderScreen(),
+      payment: (_) => const PaymentScreen(),
       bookingConfirmation: (_) => const BookingConfirmationScreen(),
       liveTracking: (_) => const LiveTrackingScreen(),
       rating: (_) => const RatingScreen(),
@@ -120,5 +124,4 @@ abstract final class AppRoutes {
         body: Center(child: Text('Route not found')),
       ),
     );
-  }
-}
+  }}
