@@ -44,12 +44,18 @@ class BottomNav extends StatelessWidget {
               if (active) return; // already on this tab
 
               if (label == 'الرئيسية') {
-                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
               } else if (label == 'بحث') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const SearchScreen()),
                 );
+              } else if (label == 'طلباتي') {
+                Navigator.pushNamed(context, '/orders');
+              } else if (label == 'حسابي') {
+                Navigator.pushNamed(context, '/profile');
+              } else if (label == 'إشعارات') {
+                Navigator.pushNamed(context, '/notifications');
               } else {
                 goTo(context, label);
               }

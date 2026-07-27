@@ -6,6 +6,10 @@ import '../../features/onboarding/presentation/screens/placeholder_screen.dart';
 import '../../features/onboarding/presentation/screens/services_page.dart';
 import '../../features/onboarding/presentation/screens/offers_page.dart';
 import '../../features/onboarding/presentation/screens/technicians_page.dart';
+import '../../features/onboarding/presentation/screens/profile_screen.dart';
+import '../../features/onboarding/presentation/screens/orders_screen.dart';
+import '../../features/onboarding/presentation/screens/settings_screen.dart';
+import '../../features/onboarding/presentation/screens/category_list_screen.dart';
 import '../../services/elfanyscreen.dart';
 import '../../services/loginscreen.dart';
 import '../../services/signupstep1.dart';
@@ -39,6 +43,10 @@ abstract final class AppRoutes {
   static const String services = '/services';
   static const String offers = '/offers';
   static const String technicians = '/technicians';
+  static const String profile = '/profile';
+  static const String orders = '/orders';
+  static const String settings = '/settings';
+  static const String categories = '/categories';
   static const String placeholder = '/placeholder';
 
   static Map<String, WidgetBuilder> get routes {
@@ -51,6 +59,10 @@ abstract final class AppRoutes {
       services: (_) => const ServicesPage(),
       offers: (_) => const OffersPage(),
       technicians: (_) => const TechniciansPage(),
+      profile: (_) => const ProfileScreen(),
+      orders: (_) => const OrdersScreen(),
+      settings: (_) => const SettingsScreen(),
+      categories: (_) => const CategoryListScreen(),
       placeholder: (_) => const PlaceholderScreen(),
     };
   }
