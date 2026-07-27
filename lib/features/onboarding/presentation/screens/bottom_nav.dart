@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'app_shared.dart';
 import 'package:san3a/elfany_details/search_screen.dart';
+
+import '../../../../core/routes/app_routes.dart';
+import 'app_shared.dart';
 
 class BottomNav extends StatelessWidget {
   final String activeLabel;
@@ -27,7 +29,7 @@ class BottomNav extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 30,
             offset: const Offset(0, -8),
           ),
@@ -44,18 +46,22 @@ class BottomNav extends StatelessWidget {
               if (active) return; // already on this tab
 
               if (label == 'الرئيسية') {
-                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.home,
+                  (route) => false,
+                );
               } else if (label == 'بحث') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const SearchScreen()),
                 );
               } else if (label == 'طلباتي') {
-                Navigator.pushNamed(context, '/orders');
+                Navigator.pushNamed(context, AppRoutes.orders);
               } else if (label == 'حسابي') {
-                Navigator.pushNamed(context, '/profile');
+                Navigator.pushNamed(context, AppRoutes.profile);
               } else if (label == 'إشعارات') {
-                Navigator.pushNamed(context, '/notifications');
+                Navigator.pushNamed(context, AppRoutes.orders);
               } else {
                 goTo(context, label);
               }
@@ -69,7 +75,9 @@ class BottomNav extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: active ? AppColors.blue1.withOpacity(0.1) : null,
+                    color: active
+                        ? AppColors.blue1.withValues(alpha: 0.1)
+                        : null,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(icon, color: color, size: 22),
@@ -89,4 +97,5 @@ class BottomNav extends StatelessWidget {
         }).toList(),
       ),
     );
-  }}
+  }
+}

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/onboarding_provider.dart';
-import '../widgets/onboarding_page_content.dart';
-import '../widgets/account_type_screen.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/animated_page_indicator.dart';
-import '../../models/account_type_model.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../../../../core/widgets/skip_button.dart';
+import '../providers/onboarding_provider.dart';
+import '../widgets/account_type_screen.dart';
+import '../widgets/onboarding_page_content.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -90,7 +90,10 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomSection(BuildContext context, OnboardingProvider provider) {
+  Widget _buildBottomSection(
+    BuildContext context,
+    OnboardingProvider provider,
+  ) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.pageHorizontal,
@@ -111,17 +114,19 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLastPageButton(BuildContext context, OnboardingProvider provider) {
+  Widget _buildLastPageButton(
+    BuildContext context,
+    OnboardingProvider provider,
+  ) {
     return PrimaryButton(
       text: AppStrings.continueText,
       isEnabled: provider.isAccountSelected,
       onPressed: () {
         // Go to Login first; pass along the chosen account type so that
         // Login's "Create account" link routes to the right sign-up flow.
-        Navigator.of(context).pushNamed(
-          AppRoutes.login,
-          arguments: provider.selectedAccountType,
-        );
+        Navigator.of(
+          context,
+        ).pushNamed(AppRoutes.login, arguments: provider.selectedAccountType);
       },
     );
   }

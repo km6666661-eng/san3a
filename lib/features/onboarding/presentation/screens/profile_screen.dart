@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../../core/routes/app_routes.dart';
 import 'app_shared.dart';
 import 'bottom_nav.dart';
 
@@ -125,11 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         ],
         body: TabBarView(
           controller: _tabController,
-          children: [
-            _overviewTab(),
-            _ordersTab(),
-            _savedTab(),
-          ],
+          children: [_overviewTab(), _ordersTab(), _savedTab()],
         ),
       ),
       bottomNavigationBar: const BottomNav(activeLabel: 'حسابي'),
@@ -194,18 +192,30 @@ class _ProfileScreenState extends State<ProfileScreen>
                         color: AppColors.orange2,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.camera_alt, color: Colors.white, size: 16),
+                      child: const Icon(
+                        Icons.camera_alt,
+                        color: Colors.white,
+                        size: 16,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
               isEditing
-                  ? _editableUnderlineField(fullName, (v) => fullName = v, center: true)
+                  ? _editableUnderlineField(
+                      fullName,
+                      (v) => fullName = v,
+                      center: true,
+                    )
                   : Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.check_circle, color: AppColors.green, size: 18),
+                        const Icon(
+                          Icons.check_circle,
+                          color: AppColors.green,
+                          size: 18,
+                        ),
                         const SizedBox(width: 6),
                         Text(
                           fullName,
@@ -219,25 +229,46 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
               const SizedBox(height: 4),
               isEditing
-                  ? _editableUnderlineField(email, (v) => email = v, center: true, muted: true)
+                  ? _editableUnderlineField(
+                      email,
+                      (v) => email = v,
+                      center: true,
+                      muted: true,
+                    )
                   : Text(
                       email,
-                      style: const TextStyle(color: Colors.white70, fontSize: 13),
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13,
+                      ),
                     ),
               if (!isEditing) ...[
                 const SizedBox(height: 4),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.location_on_outlined, color: Colors.white70, size: 14),
+                    const Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.white70,
+                      size: 14,
+                    ),
                     const SizedBox(width: 4),
-                    Text(location, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+                    Text(
+                      location,
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 12,
+                      ),
+                    ),
                   ],
                 ),
               ],
               const SizedBox(height: 20),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 14,
+                  horizontal: 8,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(16),
@@ -311,11 +342,19 @@ class _ProfileScreenState extends State<ProfileScreen>
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(isEditing ? Icons.save_outlined : Icons.edit_outlined, color: Colors.white, size: 14),
+            Icon(
+              isEditing ? Icons.save_outlined : Icons.edit_outlined,
+              color: Colors.white,
+              size: 14,
+            ),
             const SizedBox(width: 6),
             Text(
               isEditing ? 'حفظ التغييرات' : 'تعديل الملف',
-              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -342,8 +381,12 @@ class _ProfileScreenState extends State<ProfileScreen>
         ),
         decoration: const InputDecoration(
           isDense: true,
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white54),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+          ),
         ),
       ),
     );
@@ -354,8 +397,18 @@ class _ProfileScreenState extends State<ProfileScreen>
       children: [
         Icon(icon, color: Colors.white, size: 18),
         const SizedBox(height: 4),
-        Text(value, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
-        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 10)),
+        Text(
+          value,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.white70, fontSize: 10),
+        ),
       ],
     );
   }
@@ -370,7 +423,10 @@ class _ProfileScreenState extends State<ProfileScreen>
         indicatorColor: AppColors.blue1,
         indicatorSize: TabBarIndicatorSize.label,
         labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-        unselectedLabelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
         tabs: const [
           Tab(text: 'نظرة عامة'),
           Tab(text: 'طلباتي'),
@@ -387,14 +443,28 @@ class _ProfileScreenState extends State<ProfileScreen>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('المعلومات الشخصية', style: TextStyle(color: AppColors.textDark, fontSize: 15, fontWeight: FontWeight.bold)),
+            const Text(
+              'المعلومات الشخصية',
+              style: TextStyle(
+                color: AppColors.textDark,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             GestureDetector(
               onTap: () => setState(() => isEditing = !isEditing),
               child: Row(
                 children: const [
                   Icon(Icons.edit_outlined, color: AppColors.blue1, size: 14),
                   SizedBox(width: 4),
-                  Text('تعديل', style: TextStyle(color: AppColors.blue1, fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text(
+                    'تعديل',
+                    style: TextStyle(
+                      color: AppColors.blue1,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -416,18 +486,47 @@ class _ProfileScreenState extends State<ProfileScreen>
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 8, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       child: Column(
         children: [
-          _infoTile(Icons.person_outline, 'الاسم الكامل', fullName, editable: isEditing, onChanged: (v) => fullName = v),
+          _infoTile(
+            Icons.person_outline,
+            'الاسم الكامل',
+            fullName,
+            editable: isEditing,
+            onChanged: (v) => fullName = v,
+          ),
           _divider(),
-          _infoTile(Icons.call_outlined, 'رقم الهاتف', phone, editable: isEditing, onChanged: (v) => phone = v, valueDirection: TextDirection.ltr),
+          _infoTile(
+            Icons.call_outlined,
+            'رقم الهاتف',
+            phone,
+            editable: isEditing,
+            onChanged: (v) => phone = v,
+            valueDirection: TextDirection.ltr,
+          ),
           _divider(),
-          _infoTile(Icons.email_outlined, 'البريد الإلكتروني', email, editable: isEditing, onChanged: (v) => email = v, valueDirection: TextDirection.ltr),
+          _infoTile(
+            Icons.email_outlined,
+            'البريد الإلكتروني',
+            email,
+            editable: isEditing,
+            onChanged: (v) => email = v,
+            valueDirection: TextDirection.ltr,
+          ),
           _divider(),
-          _infoTile(Icons.calendar_today_outlined, 'تاريخ الانضمام', joinDate, editable: false),
+          _infoTile(
+            Icons.calendar_today_outlined,
+            'تاريخ الانضمام',
+            joinDate,
+            editable: false,
+          ),
         ],
       ),
     );
@@ -457,7 +556,13 @@ class _ProfileScreenState extends State<ProfileScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: const TextStyle(color: AppColors.textMute, fontSize: 12)),
+                Text(
+                  label,
+                  style: const TextStyle(
+                    color: AppColors.textMute,
+                    fontSize: 12,
+                  ),
+                ),
                 const SizedBox(height: 4),
                 editable
                     ? Directionality(
@@ -465,13 +570,23 @@ class _ProfileScreenState extends State<ProfileScreen>
                         child: TextFormField(
                           initialValue: value,
                           onChanged: onChanged,
-                          textAlign: valueDirection == TextDirection.rtl ? TextAlign.right : TextAlign.left,
-                          style: const TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold),
+                          textAlign: valueDirection == TextDirection.rtl
+                              ? TextAlign.right
+                              : TextAlign.left,
+                          style: const TextStyle(
+                            color: AppColors.textDark,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                           decoration: const InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.zero,
-                            enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.blue1)),
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.blue1)),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: AppColors.blue1),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: AppColors.blue1),
+                            ),
                           ),
                         ),
                       )
@@ -479,15 +594,27 @@ class _ProfileScreenState extends State<ProfileScreen>
                         textDirection: valueDirection,
                         child: Text(
                           value,
-                          textAlign: valueDirection == TextDirection.rtl ? TextAlign.right : TextAlign.left,
-                          style: const TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold),
+                          textAlign: valueDirection == TextDirection.rtl
+                              ? TextAlign.right
+                              : TextAlign.left,
+                          style: const TextStyle(
+                            color: AppColors.textDark,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
               ],
             ),
           ),
           const SizedBox(width: 10),
-          editable ? const Icon(Icons.edit, color: AppColors.blue1, size: 18) : const Icon(Icons.chevron_left, color: AppColors.textMute, size: 20),
+          editable
+              ? const Icon(Icons.edit, color: AppColors.blue1, size: 18)
+              : const Icon(
+                  Icons.chevron_left,
+                  color: AppColors.textMute,
+                  size: 20,
+                ),
         ],
       ),
     );
@@ -496,31 +623,68 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget _quickLinks() {
     final links = <List<Map<String, dynamic>>>[
       [
-        {'icon': Icons.home_outlined, 'label': 'الرئيسية', 'color': AppColors.blue1},
-        {'icon': Icons.receipt_long_outlined, 'label': 'طلباتي', 'color': const Color(0xFF2ECC71)},
-        {'icon': Icons.notifications_none, 'label': 'الإشعارات', 'color': const Color(0xFFFF9F5A)},
+        {
+          'icon': Icons.home_outlined,
+          'label': 'الرئيسية',
+          'color': AppColors.blue1,
+        },
+        {
+          'icon': Icons.receipt_long_outlined,
+          'label': 'طلباتي',
+          'color': const Color(0xFF2ECC71),
+        },
+        {
+          'icon': Icons.notifications_none,
+          'label': 'الإشعارات',
+          'color': const Color(0xFFFF9F5A),
+        },
       ],
       [
-        {'icon': Icons.search, 'label': 'بحث', 'color': const Color(0xFF29C7D1)},
-        {'icon': Icons.settings_outlined, 'label': 'الإعدادات', 'color': AppColors.textMute},
-        {'icon': Icons.help_outline, 'label': 'الدعم', 'color': const Color(0xFF7C5CFC)},
+        {
+          'icon': Icons.search,
+          'label': 'بحث',
+          'color': const Color(0xFF29C7D1),
+        },
+        {
+          'icon': Icons.settings_outlined,
+          'label': 'الإعدادات',
+          'color': AppColors.textMute,
+        },
+        {
+          'icon': Icons.help_outline,
+          'label': 'الدعم',
+          'color': const Color(0xFF7C5CFC),
+        },
       ],
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('روابط سريعة', style: TextStyle(color: AppColors.textDark, fontSize: 15, fontWeight: FontWeight.bold)),
+        const Text(
+          'روابط سريعة',
+          style: TextStyle(
+            color: AppColors.textDark,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(height: 10),
         for (final row in links) ...[
           Row(
             children: row
-                .map((item) => Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: _quickLinkTile(item['icon'] as IconData, item['label'] as String, item['color'] as Color),
+                .map(
+                  (item) => Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: _quickLinkTile(
+                        item['icon'] as IconData,
+                        item['label'] as String,
+                        item['color'] as Color,
                       ),
-                    ))
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 8),
@@ -533,17 +697,21 @@ class _ProfileScreenState extends State<ProfileScreen>
     return GestureDetector(
       onTap: () {
         if (label == 'الإعدادات') {
-          Navigator.pushNamed(context, '/settings');
+          Navigator.pushNamed(context, AppRoutes.settings);
         } else if (label == 'الرئيسية') {
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.home,
+            (route) => false,
+          );
         } else if (label == 'طلباتي') {
-          Navigator.pushNamed(context, '/orders');
+          Navigator.pushNamed(context, AppRoutes.orders);
         } else if (label == 'بحث') {
-          Navigator.pushNamed(context, '/search');
+          Navigator.pushNamed(context, AppRoutes.technicians);
         } else if (label == 'الإشعارات') {
-          Navigator.pushNamed(context, '/settings');
+          Navigator.pushNamed(context, AppRoutes.orders);
         } else if (label == 'الدعم') {
-          Navigator.pushNamed(context, '/orders');
+          Navigator.pushNamed(context, AppRoutes.settings);
         }
       },
       child: Container(
@@ -552,18 +720,29 @@ class _ProfileScreenState extends State<ProfileScreen>
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 6, offset: const Offset(0, 2)),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
           ],
         ),
         child: Column(
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundColor: color.withOpacity(0.12),
+              backgroundColor: color.withValues(alpha: 0.12),
               child: Icon(icon, color: color, size: 20),
             ),
             const SizedBox(height: 8),
-            Text(label, style: const TextStyle(color: AppColors.textDark, fontSize: 12, fontWeight: FontWeight.w600)),
+            Text(
+              label,
+              style: const TextStyle(
+                color: AppColors.textDark,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
@@ -583,7 +762,14 @@ class _ProfileScreenState extends State<ProfileScreen>
         children: const [
           Icon(Icons.logout, color: AppColors.orange2, size: 18),
           SizedBox(width: 8),
-          Text('تسجيل الخروج', style: TextStyle(color: AppColors.orange2, fontSize: 14, fontWeight: FontWeight.bold)),
+          Text(
+            'تسجيل الخروج',
+            style: TextStyle(
+              color: AppColors.orange2,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
@@ -599,7 +785,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         ],
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/orders'),
+          onTap: () => Navigator.pushNamed(context, AppRoutes.orders),
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 14),
@@ -610,7 +796,11 @@ class _ProfileScreenState extends State<ProfileScreen>
             child: const Text(
               'عرض كل الطلبات المفصلة',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -624,7 +814,11 @@ class _ProfileScreenState extends State<ProfileScreen>
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 6, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       padding: const EdgeInsets.all(14),
@@ -633,20 +827,46 @@ class _ProfileScreenState extends State<ProfileScreen>
           CircleAvatar(
             radius: 16,
             backgroundColor: order.avatarColor,
-            child: Text(order.customerInitial, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            child: Text(
+              order.customerInitial,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(order.service, style: const TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold)),
+                Text(
+                  order.service,
+                  style: const TextStyle(
+                    color: AppColors.textDark,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                Text('${order.date} · ${order.orderNumber}', style: const TextStyle(color: AppColors.textMute, fontSize: 11)),
+                Text(
+                  '${order.date} · ${order.orderNumber}',
+                  style: const TextStyle(
+                    color: AppColors.textMute,
+                    fontSize: 11,
+                  ),
+                ),
               ],
             ),
           ),
-          Text('${order.price} ج.م', style: const TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold)),
+          Text(
+            '${order.price} ج.م',
+            style: const TextStyle(
+              color: AppColors.textDark,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
@@ -659,7 +879,14 @@ class _ProfileScreenState extends State<ProfileScreen>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('عناوين محفوظة', style: TextStyle(color: AppColors.textDark, fontSize: 15, fontWeight: FontWeight.bold)),
+            const Text(
+              'عناوين محفوظة',
+              style: TextStyle(
+                color: AppColors.textDark,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             _addLink(),
           ],
         ),
@@ -672,7 +899,14 @@ class _ProfileScreenState extends State<ProfileScreen>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('طرق الدفع', style: TextStyle(color: AppColors.textDark, fontSize: 15, fontWeight: FontWeight.bold)),
+            const Text(
+              'طرق الدفع',
+              style: TextStyle(
+                color: AppColors.textDark,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             _addLink(),
           ],
         ),
@@ -687,7 +921,14 @@ class _ProfileScreenState extends State<ProfileScreen>
       children: const [
         Icon(Icons.add, color: AppColors.blue1, size: 16),
         SizedBox(width: 2),
-        Text('إضافة', style: TextStyle(color: AppColors.blue1, fontSize: 13, fontWeight: FontWeight.w600)),
+        Text(
+          'إضافة',
+          style: TextStyle(
+            color: AppColors.blue1,
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ],
     );
   }
@@ -698,7 +939,11 @@ class _ProfileScreenState extends State<ProfileScreen>
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 6, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       padding: const EdgeInsets.all(14),
@@ -717,29 +962,60 @@ class _ProfileScreenState extends State<ProfileScreen>
                 children: [
                   Row(
                     children: [
-                      Text(addr.title, style: const TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold)),
+                      Text(
+                        addr.title,
+                        style: const TextStyle(
+                          color: AppColors.textDark,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       if (addr.isDefault) ...[
                         const SizedBox(width: 6),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFE3ECFF),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Text('افتراضي', style: TextStyle(color: AppColors.blue1, fontSize: 10, fontWeight: FontWeight.w600)),
+                          child: const Text(
+                            'افتراضي',
+                            style: TextStyle(
+                              color: AppColors.blue1,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ],
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text(addr.subtitle, style: const TextStyle(color: AppColors.textMute, fontSize: 11)),
+                  Text(
+                    addr.subtitle,
+                    style: const TextStyle(
+                      color: AppColors.textMute,
+                      fontSize: 11,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-          _roundIconButton(Icons.edit_outlined, const Color(0xFFE3ECFF), AppColors.blue1),
+          _roundIconButton(
+            Icons.edit_outlined,
+            const Color(0xFFE3ECFF),
+            AppColors.blue1,
+          ),
           const SizedBox(width: 8),
-          _roundIconButton(Icons.delete_outline, const Color(0xFFFDE7E5), AppColors.orange2),
+          _roundIconButton(
+            Icons.delete_outline,
+            const Color(0xFFFDE7E5),
+            AppColors.orange2,
+          ),
         ],
       ),
     );
@@ -751,7 +1027,11 @@ class _ProfileScreenState extends State<ProfileScreen>
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 6, offset: const Offset(0, 2)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
         ],
       ),
       padding: const EdgeInsets.all(14),
@@ -763,7 +1043,14 @@ class _ProfileScreenState extends State<ProfileScreen>
               color: AppColors.blue2,
               borderRadius: BorderRadius.circular(6),
             ),
-            child: const Text('VISA', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+            child: const Text(
+              'VISA',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           Expanded(
             child: Padding(
@@ -773,25 +1060,49 @@ class _ProfileScreenState extends State<ProfileScreen>
                 children: [
                   Row(
                     children: [
-                      const Text('•••• 7891', style: TextStyle(color: AppColors.textDark, fontSize: 14, fontWeight: FontWeight.bold)),
+                      const Text(
+                        '•••• 7891',
+                        style: TextStyle(
+                          color: AppColors.textDark,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       const SizedBox(width: 6),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFFE3ECFF),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Text('افتراضي', style: TextStyle(color: AppColors.blue1, fontSize: 10, fontWeight: FontWeight.w600)),
+                        child: const Text(
+                          'افتراضي',
+                          style: TextStyle(
+                            color: AppColors.blue1,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 2),
-                  const Text('تنتهي 09/27', style: TextStyle(color: AppColors.textMute, fontSize: 11)),
+                  const Text(
+                    'تنتهي 09/27',
+                    style: TextStyle(color: AppColors.textMute, fontSize: 11),
+                  ),
                 ],
               ),
             ),
           ),
-          _roundIconButton(Icons.delete_outline, const Color(0xFFFDE7E5), AppColors.orange2),
+          _roundIconButton(
+            Icons.delete_outline,
+            const Color(0xFFFDE7E5),
+            AppColors.orange2,
+          ),
         ],
       ),
     );
@@ -817,7 +1128,11 @@ class _PinnedHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 48;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child);
   }
 

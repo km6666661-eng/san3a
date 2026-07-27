@@ -1,20 +1,25 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import '../../features/onboarding/presentation/screens/home_page.dart';
-import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
-import '../../features/onboarding/presentation/screens/placeholder_screen.dart';
-import '../../features/onboarding/presentation/screens/services_page.dart';
-import '../../features/onboarding/presentation/screens/offers_page.dart';
-import '../../features/onboarding/presentation/screens/technicians_page.dart';
-import '../../features/onboarding/presentation/screens/profile_screen.dart';
-import '../../features/onboarding/presentation/screens/orders_screen.dart';
-import '../../features/onboarding/presentation/screens/settings_screen.dart';
+
+import '../../features/onboarding/presentation/screens/booking_confirmation_screen.dart';
 import '../../features/onboarding/presentation/screens/category_list_screen.dart';
+import '../../features/onboarding/presentation/screens/home_page.dart';
+import '../../features/onboarding/presentation/screens/live_tracking_screen.dart';
+import '../../features/onboarding/presentation/screens/offers_page.dart';
+import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/onboarding/presentation/screens/orders_screen.dart';
+import '../../features/onboarding/presentation/screens/placeholder_screen.dart';
+import '../../features/onboarding/presentation/screens/profile_screen.dart';
+import '../../features/onboarding/presentation/screens/rating_screen.dart';
+import '../../features/onboarding/presentation/screens/services_page.dart';
+import '../../features/onboarding/presentation/screens/settings_screen.dart';
+import '../../features/onboarding/presentation/screens/technicians_page.dart';
 import '../../services/elfanyscreen.dart';
 import '../../services/loginscreen.dart';
-import '../../services/signupstep1.dart';
-import '../../services/signup_step_two_screen.dart';
 import '../../services/signup_otp_screen.dart';
+import '../../services/signup_step_two_screen.dart';
+import '../../services/signupstep1.dart';
 
 class SignUpFlowArgs {
   final String fullName;
@@ -48,6 +53,9 @@ abstract final class AppRoutes {
   static const String settings = '/settings';
   static const String categories = '/categories';
   static const String placeholder = '/placeholder';
+  static const String bookingConfirmation = '/booking-confirmation';
+  static const String liveTracking = '/live-tracking';
+  static const String rating = '/rating';
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -64,6 +72,9 @@ abstract final class AppRoutes {
       settings: (_) => const SettingsScreen(),
       categories: (_) => const CategoryListScreen(),
       placeholder: (_) => const PlaceholderScreen(),
+      bookingConfirmation: (_) => const BookingConfirmationScreen(),
+      liveTracking: (_) => const LiveTrackingScreen(),
+      rating: (_) => const RatingScreen(),
     };
   }
 

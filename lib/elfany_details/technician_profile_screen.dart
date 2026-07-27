@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:san3a/elfany_details/booking_details_screen.dart';
 
-
 class ProviderProfileScreen extends StatefulWidget {
   final String name;
   final String profession;
@@ -42,7 +41,12 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
           // 1. Header Section
           Container(
             color: const Color(0xFF1553D6),
-            padding: const EdgeInsets.only(top: 40, bottom: 12, left: 16, right: 16),
+            padding: const EdgeInsets.only(
+              top: 40,
+              bottom: 12,
+              left: 16,
+              right: 16,
+            ),
             child: Column(
               children: [
                 // Navigation Bar Header
@@ -54,7 +58,7 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.18),
+                        color: Colors.white.withValues(alpha: 0.18),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
@@ -70,7 +74,7 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
                         width: 32,
                         height: 32,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.18),
+                          color: Colors.white.withValues(alpha: 0.18),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -214,7 +218,7 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 10,
                   offset: const Offset(0, -4),
                 ),
@@ -317,7 +321,9 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: isSelected ? const Color(0xFF1553D6) : Colors.transparent,
+                color: isSelected
+                    ? const Color(0xFF1553D6)
+                    : Colors.transparent,
                 width: 3,
               ),
             ),
@@ -328,7 +334,9 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
-              color: isSelected ? const Color(0xFF1553D6) : const Color(0xFF64748B),
+              color: isSelected
+                  ? const Color(0xFF1553D6)
+                  : const Color(0xFF64748B),
             ),
           ),
         ),
@@ -605,10 +613,7 @@ class StatItem extends StatelessWidget {
         ),
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xFFBFDBFE),
-            fontSize: 11,
-          ),
+          style: const TextStyle(color: Color(0xFFBFDBFE), fontSize: 11),
         ),
       ],
     );
@@ -669,10 +674,7 @@ class DetailRow extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 13,
-            color: Color(0xFF64748B),
-          ),
+          style: const TextStyle(fontSize: 13, color: Color(0xFF64748B)),
         ),
         const Spacer(),
         Text(
@@ -707,10 +709,7 @@ class RatingBarItem extends StatelessWidget {
         children: [
           Text(
             '$starNumber',
-            style: const TextStyle(
-              fontSize: 11,
-              color: Color(0xFF64748B),
-            ),
+            style: const TextStyle(fontSize: 11, color: Color(0xFF64748B)),
           ),
           const SizedBox(width: 6),
           Expanded(
@@ -719,7 +718,9 @@ class RatingBarItem extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: percentage,
                 backgroundColor: const Color(0xFFE2E8F0),
-                valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFF97316)),
+                valueColor: const AlwaysStoppedAnimation<Color>(
+                  Color(0xFFF97316),
+                ),
                 minHeight: 6,
               ),
             ),

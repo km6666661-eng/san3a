@@ -1,7 +1,10 @@
 import 'dart:io';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:audioplayers/audioplayers.dart';
+
+import '../core/routes/app_routes.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -52,7 +55,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('رفع الصورة غير متاح في هذا الإصدار، يمكنك المتابعة بدون صورة.'),
+        content: Text(
+          'رفع الصورة غير متاح في هذا الإصدار، يمكنك المتابعة بدون صورة.',
+        ),
       ),
     );
   }
@@ -75,7 +80,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 shape: BoxShape.circle,
               ),
               child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF1964FF), size: 16),
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Color(0xFF1964FF),
+                  size: 16,
+                ),
                 padding: EdgeInsets.zero,
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -148,11 +157,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       fontSize: 16,
                       letterSpacing: 1,
                     ),
-                    prefixIcon: const Icon(Icons.credit_card, color: Colors.grey),
+                    prefixIcon: const Icon(
+                      Icons.credit_card,
+                      color: Colors.grey,
+                    ),
                     filled: true,
                     fillColor: Colors.white,
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
                       borderSide: BorderSide.none,
@@ -163,7 +177,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(color: Color(0xFF1964FF), width: 1.5),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF1964FF),
+                        width: 1.5,
+                      ),
                     ),
                   ),
                 ),
@@ -192,23 +209,32 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             style: const TextStyle(fontSize: 16),
                             decoration: InputDecoration(
                               hintText: 'MM / YY',
-                              hintStyle: const TextStyle(color: Colors.grey, fontSize: 16),
+                              hintStyle: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16,
+                              ),
                               filled: true,
                               fillColor: Colors.white,
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
+                                horizontal: 16,
+                                vertical: 14,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
                                 borderSide: BorderSide.none,
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
-                                borderSide: BorderSide(color: Colors.grey.shade200),
+                                borderSide: BorderSide(
+                                  color: Colors.grey.shade200,
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
-                                borderSide:
-                                    const BorderSide(color: Color(0xFF1964FF), width: 1.5),
+                                borderSide: const BorderSide(
+                                  color: Color(0xFF1964FF),
+                                  width: 1.5,
+                                ),
                               ),
                             ),
                           ),
@@ -237,7 +263,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               FilteringTextInputFormatter.digitsOnly,
                               LengthLimitingTextInputFormatter(3),
                             ],
-                            style: const TextStyle(fontSize: 18, letterSpacing: 2),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              letterSpacing: 2,
+                            ),
                             decoration: InputDecoration(
                               hintText: '•••',
                               hintStyle: const TextStyle(
@@ -249,19 +278,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               filled: true,
                               fillColor: Colors.white,
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 14),
+                                horizontal: 16,
+                                vertical: 14,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
                                 borderSide: BorderSide.none,
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
-                                borderSide: BorderSide(color: Colors.grey.shade200),
+                                borderSide: BorderSide(
+                                  color: Colors.grey.shade200,
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(14),
-                                borderSide:
-                                    const BorderSide(color: Color(0xFF1964FF), width: 1.5),
+                                borderSide: const BorderSide(
+                                  color: Color(0xFF1964FF),
+                                  width: 1.5,
+                                ),
                               ),
                             ),
                           ),
@@ -299,20 +334,28 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             child: Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image.file(_instapayReceiptImage!, fit: BoxFit.cover),
+                                Image.file(
+                                  _instapayReceiptImage!,
+                                  fit: BoxFit.cover,
+                                ),
                                 Positioned(
                                   bottom: 8,
                                   left: 8,
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 4),
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.black54,
                                       borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: const Text(
                                       'اضغط لتغيير الصورة',
-                                      style: TextStyle(color: Colors.white, fontSize: 10),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -337,7 +380,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               const SizedBox(height: 10),
                               const Text(
                                 'اضغط هنا لرفع صورة إيصال التحويل',
-                                style: TextStyle(color: Colors.grey, fontSize: 13),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 13,
+                                ),
                               ),
                             ],
                           ),
@@ -393,10 +439,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         SizedBox(width: 5),
                         Text(
                           'مدفوعات مؤمنة بتشفير 256-bit SSL',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                       ],
                     ),
@@ -412,6 +455,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     await _playPaySound();
+                    if (!mounted) return;
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRoutes.bookingConfirmation,
+                      (route) => false,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFF7A00),
@@ -458,7 +507,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? const Color(0xFF1964FF) : const Color(0xFFEDEFF3),
+            color: isSelected
+                ? const Color(0xFF1964FF)
+                : const Color(0xFFEDEFF3),
             width: isSelected ? 1.5 : 1,
           ),
           boxShadow: [
@@ -476,7 +527,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF1964FF) : const Color(0xFFF2F4F8),
+                color: isSelected
+                    ? const Color(0xFF1964FF)
+                    : const Color(0xFFF2F4F8),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -501,10 +554,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                 ],
               ),
@@ -616,7 +666,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   SizedBox(height: 2),
                   Text(
                     'عمر ناصر',
-                    style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -630,7 +684,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   SizedBox(height: 2),
                   Text(
                     '09/27',
-                    style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:san3a/payment/payment_screen.dart';
 
+import '../payment/payment_screen.dart';
 
 class BookingScreen extends StatefulWidget {
   final String technicianName;
@@ -15,7 +15,8 @@ class BookingScreen extends StatefulWidget {
     this.profession = 'سباكة',
     this.rating = '4.9',
     this.price = '150',
-    this.imageUrl = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+    this.imageUrl =
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
   });
 
   @override
@@ -55,28 +56,28 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7FC),
-     appBar: AppBar(
-  automaticallyImplyLeading: false,
-  backgroundColor: Colors.transparent,
-  elevation: 0,
-  actions: [
-    Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE2E8F0).withOpacity(0.5),
-        shape: BoxShape.circle,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          Container(
+            margin: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: const Color(0xFFE2E8F0).withValues(alpha: 0.5),
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Color(0xFF1E293B),
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+        ],
       ),
-      child: IconButton(
-        icon: const Icon(
-          Icons.arrow_forward_ios,
-          size: 16,
-          color: Color(0xFF1E293B),
-        ),
-        onPressed: () => Navigator.pop(context),
-      ),
-    ),
-  ],
-),
       body: Column(
         children: [
           Expanded(
@@ -87,13 +88,16 @@ class _BookingScreenState extends State<BookingScreen> {
                 children: [
                   // 1. Technician Card Summary Header — دلوقتي بياخد بيانات الفني الحقيقي
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.02),
+                          color: Colors.black.withValues(alpha: 0.02),
                           blurRadius: 10,
                           offset: const Offset(0, 2),
                         ),
@@ -171,12 +175,13 @@ class _BookingScreenState extends State<BookingScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: _services.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 2.8,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 2.8,
+                        ),
                     itemBuilder: (context, index) {
                       final service = _services[index];
                       final isSelected = _selectedService == service;
@@ -189,16 +194,22 @@ class _BookingScreenState extends State<BookingScreen> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: isSelected ? const Color(0xFF1553D6) : Colors.white,
+                            color: isSelected
+                                ? const Color(0xFF1553D6)
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(
-                              color: isSelected ? const Color(0xFF1553D6) : const Color(0xFFE2E8F0),
+                              color: isSelected
+                                  ? const Color(0xFF1553D6)
+                                  : const Color(0xFFE2E8F0),
                             ),
                           ),
                           child: Text(
                             service,
                             style: TextStyle(
-                              color: isSelected ? Colors.white : const Color(0xFF0F172A),
+                              color: isSelected
+                                  ? Colors.white
+                                  : const Color(0xFF0F172A),
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
                             ),
@@ -217,7 +228,8 @@ class _BookingScreenState extends State<BookingScreen> {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: _dates.length,
-                      separatorBuilder: (context, index) => const SizedBox(width: 8),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 8),
                       itemBuilder: (context, index) {
                         final item = _dates[index];
                         final isSelected = _selectedDateIndex == index;
@@ -230,10 +242,14 @@ class _BookingScreenState extends State<BookingScreen> {
                           child: Container(
                             width: 62,
                             decoration: BoxDecoration(
-                              color: isSelected ? const Color(0xFF1553D6) : Colors.white,
+                              color: isSelected
+                                  ? const Color(0xFF1553D6)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
-                                color: isSelected ? const Color(0xFF1553D6) : const Color(0xFFE2E8F0),
+                                color: isSelected
+                                    ? const Color(0xFF1553D6)
+                                    : const Color(0xFFE2E8F0),
                               ),
                             ),
                             child: Column(
@@ -244,7 +260,9 @@ class _BookingScreenState extends State<BookingScreen> {
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w900,
-                                    color: isSelected ? Colors.white : const Color(0xFF0F172A),
+                                    color: isSelected
+                                        ? Colors.white
+                                        : const Color(0xFF0F172A),
                                   ),
                                 ),
                                 const SizedBox(height: 2),
@@ -253,7 +271,9 @@ class _BookingScreenState extends State<BookingScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900,
-                                    color: isSelected ? Colors.white : const Color(0xFF0F172A),
+                                    color: isSelected
+                                        ? Colors.white
+                                        : const Color(0xFF0F172A),
                                   ),
                                 ),
                               ],
@@ -272,12 +292,13 @@ class _BookingScreenState extends State<BookingScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: _times.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 3.2,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 3.2,
+                        ),
                     itemBuilder: (context, index) {
                       final time = _times[index];
                       final isSelected = _selectedTime == time;
@@ -290,16 +311,22 @@ class _BookingScreenState extends State<BookingScreen> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: isSelected ? const Color(0xFF1553D6) : Colors.white,
+                            color: isSelected
+                                ? const Color(0xFF1553D6)
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: isSelected ? const Color(0xFF1553D6) : const Color(0xFFE2E8F0),
+                              color: isSelected
+                                  ? const Color(0xFF1553D6)
+                                  : const Color(0xFFE2E8F0),
                             ),
                           ),
                           child: Text(
                             time,
                             style: TextStyle(
-                              color: isSelected ? Colors.white : const Color(0xFF0F172A),
+                              color: isSelected
+                                  ? Colors.white
+                                  : const Color(0xFF0F172A),
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
                             ),
@@ -316,11 +343,21 @@ class _BookingScreenState extends State<BookingScreen> {
                   TextField(
                     decoration: InputDecoration(
                       hintText: 'أدخل عنوان منزلك بالتفصيل',
-                      hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                      hintStyle: const TextStyle(
+                        color: Color(0xFF94A3B8),
+                        fontSize: 12,
+                      ),
                       fillColor: Colors.white,
                       filled: true,
-                      suffixIcon: const Icon(Icons.location_on_outlined, color: Color(0xFF94A3B8), size: 20),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      suffixIcon: const Icon(
+                        Icons.location_on_outlined,
+                        color: Color(0xFF94A3B8),
+                        size: 20,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(14),
                         borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
@@ -339,8 +376,12 @@ class _BookingScreenState extends State<BookingScreen> {
                   TextField(
                     maxLines: 3,
                     decoration: InputDecoration(
-                      hintText: 'صف المشكلة بالتفصيل لمساعدة الفني على التحضير...',
-                      hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                      hintText:
+                          'صف المشكلة بالتفصيل لمساعدة الفني على التحضير...',
+                      hintStyle: const TextStyle(
+                        color: Color(0xFF94A3B8),
+                        fontSize: 12,
+                      ),
                       fillColor: Colors.white,
                       filled: true,
                       contentPadding: const EdgeInsets.all(14),
@@ -368,7 +409,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       width: 75,
                       height: 75,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF1F5F9).withOpacity(0.5),
+                        color: const Color(0xFFF1F5F9).withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: const Color(0xFF1553D6),
@@ -401,18 +442,32 @@ class _BookingScreenState extends State<BookingScreen> {
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'كود الخصم',
-                            hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                            hintStyle: const TextStyle(
+                              color: Color(0xFF94A3B8),
+                              fontSize: 12,
+                            ),
                             fillColor: Colors.white,
                             filled: true,
-                            prefixIcon: const Icon(Icons.card_giftcard_outlined, color: Color(0xFF94A3B8), size: 18),
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                            prefixIcon: const Icon(
+                              Icons.card_giftcard_outlined,
+                              color: Color(0xFF94A3B8),
+                              size: 18,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 12,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFE2E8F0),
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color(0xFF1553D6)),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF1553D6),
+                              ),
                             ),
                           ),
                         ),
@@ -423,7 +478,10 @@ class _BookingScreenState extends State<BookingScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFEBF3FE),
                           elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 14,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -507,7 +565,7 @@ class _BookingScreenState extends State<BookingScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
+                  color: Colors.black.withValues(alpha: 0.04),
                   blurRadius: 10,
                   offset: const Offset(0, -4),
                 ),
@@ -566,10 +624,7 @@ class _BookingScreenState extends State<BookingScreen> {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFF64748B),
-          ),
+          style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)),
         ),
         Text(
           price,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../../core/routes/app_routes.dart';
 import 'bottom_nav.dart';
 
 enum OrderStatus { completed, ongoing, cancelled }
@@ -136,10 +138,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
               const SizedBox(height: 8),
               Expanded(
                 child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   itemCount: filteredOrders.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 14),
-                  itemBuilder: (context, index) => _orderCard(filteredOrders[index]),
+                  itemBuilder: (context, index) =>
+                      _orderCard(filteredOrders[index]),
                 ),
               ),
             ],
@@ -289,7 +295,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       const SizedBox(width: 8),
                     ],
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, '/profile'),
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.profile),
                       child: _pillButton('تفاصيل', filled: false),
                     ),
                   ],
@@ -378,5 +385,4 @@ class _OrdersScreenState extends State<OrdersScreen> {
       ),
     );
   }
-
 }

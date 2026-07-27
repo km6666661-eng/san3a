@@ -24,4 +24,15 @@ abstract final class AppColors {
   // Shadows
   static const Color shadowLight = Color(0x0A000000);
   static const Color shadowMedium = Color(0x14000000);
+
+  // Semantic
+  static const Color screenBackground = Color(0xFFF4F7FC);
+  static const Color success = Color(0xFF22C55E);
+  static const Color successLight = Color(0xFFDCFCE7);
+  static const Color error = Color(0xFFEF4444);
+  static const Color errorLight = Color(0xFFFEE2E2);
+  static const Color warning = Color(0xFFF97316);
+  static const Color star = Color(0xFFF97316);
+  static const Color accentOrange = Color(0xFFFF7A00);
+  static const Color mapOverlay = Color(0x66000000);
 }
