@@ -628,7 +628,7 @@ class _OffersSection extends StatelessWidget {
     );
   }
 }
-
+ //editing this section rn
 class _TechniciansSection extends StatelessWidget {
   final List<Technician> technicians;
   const _TechniciansSection({required this.technicians});
