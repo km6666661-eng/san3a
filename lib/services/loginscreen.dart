@@ -85,7 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
         password: password,
       );
       if (!mounted) return;
-      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (route) => false);
+      final route = _accountType == AccountType.technician
+          ? AppRoutes.technicianHome
+          : AppRoutes.home;
+      Navigator.pushNamedAndRemoveUntil(context, route, (route) => false);
 
     } catch (e) {
       if (!mounted) return;

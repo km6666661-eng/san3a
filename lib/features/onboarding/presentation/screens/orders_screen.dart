@@ -296,7 +296,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     ],
                     GestureDetector(
                       onTap: () =>
-                          Navigator.pushNamed(context, AppRoutes.profile),
+                          Navigator.pushNamed(context, AppRoutes.offers),
                       child: _pillButton('تفاصيل', filled: false),
                     ),
                   ],

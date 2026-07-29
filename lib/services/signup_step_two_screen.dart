@@ -9,7 +9,8 @@ class SignUpStepTwoScreen extends StatefulWidget {
   final String email;
   final String phoneNumber;
   final String nationalId;
-  final File? criminalRecordImage; // استقبال صورة الفيش والتشبيه
+  final File? criminalRecordImage;
+  final bool isTechnician;
 
   const SignUpStepTwoScreen({
     Key? key,
@@ -17,7 +18,8 @@ class SignUpStepTwoScreen extends StatefulWidget {
     required this.email,
     required this.phoneNumber,
     required this.nationalId,
-    this.criminalRecordImage, // جعله اختيارياً ليناسب العميل والفني معاَ
+    this.criminalRecordImage,
+    this.isTechnician = false,
   }) : super(key: key);
 
   @override
@@ -103,6 +105,7 @@ class _SignUpStepTwoScreenState extends State<SignUpStepTwoScreen> {
           email: widget.email,
           phoneNumber: widget.phoneNumber,
           nationalId: widget.nationalId,
+          isTechnician: widget.isTechnician,
         ),
       );
     } catch (e) {

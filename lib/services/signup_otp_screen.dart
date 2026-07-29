@@ -9,6 +9,7 @@ class SignUpOtpScreen extends StatefulWidget {
   final String email;
   final String phoneNumber;
   final String nationalId;
+  final bool isTechnician;
 
   const SignUpOtpScreen({
     Key? key,
@@ -16,6 +17,7 @@ class SignUpOtpScreen extends StatefulWidget {
     required this.email,
     required this.phoneNumber,
     required this.nationalId,
+    this.isTechnician = false,
   }) : super(key: key);
 
   @override
@@ -94,8 +96,11 @@ class _SignUpOtpScreenState extends State<SignUpOtpScreen> {
       }
 
       if (!mounted) return;
+      final destination = widget.isTechnician
+          ? AppRoutes.technicianHome
+          : AppRoutes.home;
       Navigator.of(context).pushNamedAndRemoveUntil(
-        AppRoutes.home,
+        destination,
         (route) => false,
       );
     } catch (e) {

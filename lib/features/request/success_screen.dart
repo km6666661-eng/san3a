@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/constants.dart';
-import '../onboarding/presentation/screens/home_page.dart';
+import '../../core/routes/app_routes.dart';
 import '../onboarding/presentation/screens/offers_page.dart';
 import 'widgets/success_summary_card.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({super.key});
+  final bool isTechnician;
+  const SuccessScreen({super.key, this.isTechnician = false});
 
   @override
   Widget build(BuildContext context) {
@@ -107,9 +108,9 @@ class SuccessScreen extends StatelessWidget {
           height: 54,
           child: OutlinedButton(
             onPressed: () {
-              Navigator.pushAndRemoveUntil(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (_) => const HomePage()),
+                isTechnician ? AppRoutes.technicianHome : AppRoutes.home,
                 (route) => false,
               );
             },

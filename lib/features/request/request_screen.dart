@@ -8,7 +8,8 @@ import 'widgets/step_indicator.dart';
 import 'widgets/urgency_grid.dart';
 
 class RequestScreen extends StatefulWidget {
-  const RequestScreen({super.key});
+  final bool isTechnician;
+  const RequestScreen({super.key, this.isTechnician = false});
 
   @override
   State<RequestScreen> createState() => _RequestScreenState();
@@ -143,7 +144,7 @@ class _RequestScreenState extends State<RequestScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const BudgetTimeScreen(),
+                  builder: (_) => BudgetTimeScreen(isTechnician: widget.isTechnician),
                 ),
               );
             },

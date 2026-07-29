@@ -134,6 +134,7 @@ class _ElFanyScreenState extends State<ElFanyScreen> {
           phoneNumber: phone,
           nationalId: nationalId,
           criminalRecordImagePath: _criminalRecordImage?.path,
+          isTechnician: true,
         ),
       );
     } catch (e) {

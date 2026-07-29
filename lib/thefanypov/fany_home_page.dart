@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:san3a/core/routes/app_routes.dart';
+import 'package:san3a/elfany_details/search_screen.dart';
 import 'package:san3a/features/onboarding/presentation/screens/app_shared.dart';
 import 'package:san3a/features/onboarding/presentation/screens/bottom_nav.dart';
 import 'package:san3a/features/onboarding/presentation/screens/offers_page.dart';
@@ -22,14 +24,14 @@ const Color kTextMute = Color(0xFF9AA3B2);
 const Color kGold = Color(0xFFFFB800);
 const Color kGreen = Color(0xFF1FAE64);
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TechnicianHomePage extends StatefulWidget {
+  const TechnicianHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TechnicianHomePage> createState() => _TechnicianHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TechnicianHomePageState extends State<TechnicianHomePage> {
   String? selectedCategory; // null = "all"
 
   void onFilterTap(String categoryKey) {
@@ -65,6 +67,21 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: const BottomNav(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.pushNamed(
+          context,
+          AppRoutes.createRequest,
+          arguments: true,
+        ),
+        backgroundColor: kBlue1,
+        foregroundColor: Colors.white,
+        elevation: 4,
+        icon: const Icon(Icons.add, size: 20),
+        label: const Text(
+          'نشر طلب',
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+        ),
+      ),
     );
   }
 }
@@ -102,11 +119,11 @@ class _Header extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                onTap: () => goTo(context, 'المحفظة'),
+                onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => goTo(context, 'الملف الشخصي'),
+                onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -138,7 +155,7 @@ class _Header extends StatelessWidget {
                   size: 20,
                 ),
                 showDot: true,
-                onTap: () => goTo(context, 'الإشعارات'),
+                onTap: () => Navigator.pushNamed(context, AppRoutes.orders),
               ),
             ],
           ),
@@ -172,7 +189,10 @@ class _Header extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           GestureDetector(
-            onTap: () => goTo(context, 'صفحة البحث'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SearchScreen()),
+            ),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
               decoration: BoxDecoration(
@@ -337,7 +357,10 @@ class _PromoBanner extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     GestureDetector(
-                      onTap: () => goTo(context, 'حجز أول خدمة'),
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.createRequest,
+                      ),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,

@@ -750,27 +750,34 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   Widget _logoutButton() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 14),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFDE7E5),
-        borderRadius: BorderRadius.circular(14),
+    return GestureDetector(
+      onTap: () => Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.onboarding,
+        (route) => false,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(Icons.logout, color: AppColors.orange2, size: 18),
-          SizedBox(width: 8),
-          Text(
-            'تسجيل الخروج',
-            style: TextStyle(
-              color: AppColors.orange2,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFDE7E5),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.logout, color: AppColors.orange2, size: 18),
+            SizedBox(width: 8),
+            Text(
+              'تسجيل الخروج',
+              style: TextStyle(
+                color: AppColors.orange2,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

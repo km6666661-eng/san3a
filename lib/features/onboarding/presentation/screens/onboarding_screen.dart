@@ -6,6 +6,7 @@ import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/animated_page_indicator.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../../../../core/widgets/skip_button.dart';
+import '../../models/account_type_model.dart';
 import '../providers/onboarding_provider.dart';
 import '../widgets/account_type_screen.dart';
 import '../widgets/onboarding_page_content.dart';
@@ -122,11 +123,19 @@ class OnboardingScreen extends StatelessWidget {
       text: AppStrings.continueText,
       isEnabled: provider.isAccountSelected,
       onPressed: () {
-        // Go to Login first; pass along the chosen account type so that
-        // Login's "Create account" link routes to the right sign-up flow.
-        Navigator.of(
-          context,
-        ).pushNamed(AppRoutes.login, arguments: provider.selectedAccountType);
+        if (provider.selectedAccountType == AccountType.technician) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.technicianHome,
+            (route) => false,
+          );
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.home,
+            (route) => false,
+          );
+        }
       },
     );
   }

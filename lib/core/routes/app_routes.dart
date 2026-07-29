@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:san3a/payment/payment_screen.dart';
-
+import 'package:san3a/thefanypov/fany_home_page.dart';
 
 import '../../features/onboarding/presentation/screens/booking_confirmation_screen.dart';
 import '../../features/onboarding/presentation/screens/category_list_screen.dart';
@@ -17,6 +17,10 @@ import '../../features/onboarding/presentation/screens/rating_screen.dart';
 import '../../features/onboarding/presentation/screens/services_page.dart';
 import '../../features/onboarding/presentation/screens/settings_screen.dart';
 import '../../features/onboarding/presentation/screens/technicians_page.dart';
+import '../../features/request/request_screen.dart';
+import '../../features/request/budget_time_screen.dart';
+import '../../features/request/publish_screen.dart';
+import '../../features/request/success_screen.dart';
 import '../../services/elfanyscreen.dart';
 import '../../services/loginscreen.dart';
 import '../../services/signup_otp_screen.dart';
@@ -29,6 +33,7 @@ class SignUpFlowArgs {
   final String phoneNumber;
   final String nationalId;
   final String? criminalRecordImagePath;
+  final bool isTechnician;
 
   const SignUpFlowArgs({
     required this.fullName,
@@ -36,6 +41,7 @@ class SignUpFlowArgs {
     required this.phoneNumber,
     required this.nationalId,
     this.criminalRecordImagePath,
+    this.isTechnician = false,
   });
 }
 
@@ -59,6 +65,11 @@ abstract final class AppRoutes {
   static const String bookingConfirmation = '/booking-confirmation';
   static const String liveTracking = '/live-tracking';
   static const String rating = '/rating';
+  static const String technicianHome = '/technician-home';
+  static const String createRequest = '/create-request';
+  static const String budgetTime = '/budget-time';
+  static const String publish = '/publish';
+  static const String success = '/success';
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -79,6 +90,15 @@ abstract final class AppRoutes {
       bookingConfirmation: (_) => const BookingConfirmationScreen(),
       liveTracking: (_) => const LiveTrackingScreen(),
       rating: (_) => const RatingScreen(),
+      technicianHome: (_) => const TechnicianHomePage(),
+      createRequest: (ctx) {
+        final args = ModalRoute.of(ctx)?.settings.arguments;
+        final isTechnician = args is bool && args;
+        return RequestScreen(isTechnician: isTechnician);
+      },
+      budgetTime: (_) => const BudgetTimeScreen(),
+      publish: (_) => const PublishScreen(),
+      success: (_) => const SuccessScreen(),
     };
   }
 
@@ -96,6 +116,7 @@ abstract final class AppRoutes {
               criminalRecordImage: args.criminalRecordImagePath == null
                   ? null
                   : File(args.criminalRecordImagePath!),
+              isTechnician: args.isTechnician,
             ),
           );
         }
@@ -109,6 +130,7 @@ abstract final class AppRoutes {
               email: args.email,
               phoneNumber: args.phoneNumber,
               nationalId: args.nationalId,
+              isTechnician: args.isTechnician,
             ),
           );
         }

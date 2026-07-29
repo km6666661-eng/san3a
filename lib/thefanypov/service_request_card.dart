@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:san3a/core/routes/app_routes.dart';
 import 'package:san3a/features/onboarding/presentation/screens/app_shared.dart';
 import 'package:san3a/thefanypov/service_request_data.dart';
 
@@ -192,10 +193,13 @@ class ServiceRequestCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 14),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => goTo(context, 'تقديم عرض: ${r.title}'),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.createRequest,
+                  ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kBlue1,
                   foregroundColor: Colors.white,

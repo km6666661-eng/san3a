@@ -9,7 +9,8 @@ import 'widgets/summary_card.dart';
 import 'widgets/time_selector.dart';
 
 class BudgetTimeScreen extends StatefulWidget {
-  const BudgetTimeScreen({super.key});
+  final bool isTechnician;
+  const BudgetTimeScreen({super.key, this.isTechnician = false});
 
   @override
   State<BudgetTimeScreen> createState() => _BudgetTimeScreenState();
@@ -194,7 +195,7 @@ class _BudgetTimeScreenState extends State<BudgetTimeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const PublishScreen(),
+                  builder: (_) => PublishScreen(isTechnician: widget.isTechnician),
                 ),
               );
             },

@@ -8,7 +8,8 @@ import 'widgets/step_indicator.dart';
 import 'widgets/voice_recorder.dart';
 
 class PublishScreen extends StatelessWidget {
-  const PublishScreen({super.key});
+  final bool isTechnician;
+  const PublishScreen({super.key, this.isTechnician = false});
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +149,7 @@ class PublishScreen extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const SuccessScreen(),
+                  builder: (_) => SuccessScreen(isTechnician: isTechnician),
                 ),
               );
             },
