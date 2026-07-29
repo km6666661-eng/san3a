@@ -115,28 +115,20 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLastPageButton(
-    BuildContext context,
-    OnboardingProvider provider,
-  ) {
-    return PrimaryButton(
-      text: AppStrings.continueText,
-      isEnabled: provider.isAccountSelected,
-      onPressed: () {
-        if (provider.selectedAccountType == AccountType.technician) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            AppRoutes.technicianHome,
-            (route) => false,
-          );
-        } else {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            AppRoutes.home,
-            (route) => false,
-          );
-        }
-      },
-    );
-  }
-}
+ Widget _buildLastPageButton(
+  BuildContext context,
+  OnboardingProvider provider,
+) {
+  return PrimaryButton(
+    text: AppStrings.continueText,
+    isEnabled: provider.isAccountSelected,
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.login,
+        (route) => false,
+        arguments: provider.selectedAccountType,
+      );
+    },
+  );
+}}

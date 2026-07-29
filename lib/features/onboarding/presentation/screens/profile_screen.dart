@@ -749,13 +749,13 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _logoutButton() {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRoutes.onboarding,
-        (route) => false,
-      ),
+Widget _logoutButton() {
+  return GestureDetector(
+    onTap: () => Navigator.pushNamedAndRemoveUntil(
+      context,
+      AppRoutes.login,   // <-- كده بقت صح
+      (route) => false,
+    ),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 14),

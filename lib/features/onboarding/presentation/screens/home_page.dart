@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:san3a/elfany_details/search_screen.dart';
+import 'package:san3a/features/request/request_screen.dart';
 
 import '../../../../core/routes/app_routes.dart';
 import 'app_shared.dart';
@@ -7,6 +8,7 @@ import 'bottom_nav.dart';
 import 'services_page.dart';
 import 'offers_page.dart';
 import 'technicians_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -56,17 +58,20 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: const BottomNav(),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.pushNamed(context, AppRoutes.createRequest),
-        backgroundColor: AppColors.blue1,
-        foregroundColor: Colors.white,
-        elevation: 4,
-        icon: const Icon(Icons.add, size: 20),
-        label: const Text(
-          'طلب خدمة',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-        ),
-      ),
+     floatingActionButton: FloatingActionButton.extended(
+  onPressed: () => Navigator.push(
+    context,
+    MaterialPageRoute(builder: (_) => const RequestScreen()),
+  ),
+  backgroundColor: AppColors.blue1,
+  foregroundColor: Colors.white,
+  elevation: 4,
+  icon: const Icon(Icons.add, size: 20),
+  label: const Text(
+    'انشر طلبك',
+    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+  ),
+),
     );
   }
 }

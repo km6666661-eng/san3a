@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:san3a/features/onboarding/presentation/screens/home_page.dart';
+import 'package:san3a/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:san3a/thefanypov/fany_home_page.dart';
 
 import 'core/routes/app_routes.dart';
 import 'core/theme/app_theme.dart';
@@ -49,6 +52,8 @@ class San3aApp extends StatelessWidget {
         initialRoute: AppRoutes.onboarding,
         routes: AppRoutes.routes,
         onGenerateRoute: AppRoutes.onGenerateRoute,
+        
+        
       ),
     );
   }

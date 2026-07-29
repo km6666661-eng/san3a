@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:san3a/core/routes/app_routes.dart';
 import 'package:san3a/features/onboarding/presentation/screens/app_shared.dart';
 import 'package:san3a/thefanypov/service_request_data.dart';
+import 'package:san3a/thefanypov/submit_offer_screen.dart';
+
 
 // ============================================================
 // LOCAL COLOR PALETTE (no external AppColors dependency)
@@ -193,13 +194,18 @@ class ServiceRequestCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 14),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    AppRoutes.createRequest,
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                // بيبعت نفس الـ request اللي المستخدم ضغط على كارته،
+                // فشاشة "تقديم عرض" اللي بعدها بتفتح بنفس بيانات
+                // هذا الطلب بالظبط (العنوان، الميزانية، التصنيف...)
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SubmitOfferScreen(request: r),
                   ),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kBlue1,
                   foregroundColor: Colors.white,

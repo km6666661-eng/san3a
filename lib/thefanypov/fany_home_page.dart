@@ -38,7 +38,6 @@ class _TechnicianHomePageState extends State<TechnicianHomePage> {
     setState(() {
       selectedCategory = selectedCategory == categoryKey ? null : categoryKey;
     });
-    goTo(context, selectedCategory == null ? 'كل الخدمات' : selectedCategory!);
   }
 
   @override
@@ -67,21 +66,6 @@ class _TechnicianHomePageState extends State<TechnicianHomePage> {
         ),
       ),
       bottomNavigationBar: const BottomNav(),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.pushNamed(
-          context,
-          AppRoutes.createRequest,
-          arguments: true,
-        ),
-        backgroundColor: kBlue1,
-        foregroundColor: Colors.white,
-        elevation: 4,
-        icon: const Icon(Icons.add, size: 20),
-        label: const Text(
-          'نشر طلب',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-        ),
-      ),
     );
   }
 }
@@ -594,14 +578,14 @@ class _OffersSection extends StatelessWidget {
                               },
                               errorBuilder: (context, error, stack) =>
                                   Container(
-                                    height: 100,
-                                    color: kBg,
-                                    alignment: Alignment.center,
-                                    child: const Icon(
-                                      Icons.image_not_supported,
-                                      color: kTextMute,
-                                    ),
-                                  ),
+                                height: 100,
+                                color: kBg,
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.image_not_supported,
+                                  color: kTextMute,
+                                ),
+                              ),
                             ),
                           ),
                           Positioned(
@@ -665,9 +649,7 @@ class _OffersSection extends StatelessWidget {
 }
 
 // ============================================================
-// SERVICE REQUESTS PREVIEW (replaces "أفضل الفنيين")
-// Compact teaser on Home: same working filter chips + a couple
-// of cards, "عرض الكل" pushes the full ServiceRequestsPage.
+// SERVICE REQUESTS PREVIEW
 // ============================================================
 class _ServiceRequestsPreview extends StatefulWidget {
   const _ServiceRequestsPreview();
@@ -680,11 +662,22 @@ class _ServiceRequestsPreview extends StatefulWidget {
 class _ServiceRequestsPreviewState extends State<_ServiceRequestsPreview> {
   String activeFilter = 'all';
 
+  // كل الطلبات المطابقة للفلتر الحالي (بدون أي قصّ)، بحيث لو طلب
+  // ظاهر في تصنيف معيّن يفضل موجود لما ترجع لـ "الكل" برضه.
+  List<ServiceRequest> get _matchingRequests {
+    if (activeFilter == 'all') return kServiceRequests;
+    return kServiceRequests.where((r) => r.category == activeFilter).toList();
+  }
+
+  // بنعرض بريفيو بحد أقصى منطقي، لكن بياخده من نفس القايمة
+  // المتطابقة فعليًا فمفيش طلب يختفي من غير سبب.
+  static const int _previewLimit = 4;
+
   List<ServiceRequest> get filteredRequests {
-    final list = activeFilter == 'all'
-        ? kServiceRequests
-        : kServiceRequests.where((r) => r.category == activeFilter).toList();
-    return list.take(2).toList();
+    final matching = _matchingRequests;
+    return matching.length <= _previewLimit
+        ? matching
+        : matching.take(_previewLimit).toList();
   }
 
   @override

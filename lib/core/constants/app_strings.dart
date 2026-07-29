@@ -1,10 +1,10 @@
 abstract final class AppStrings {
   // App
-  static const String appName = 'سَنْعَة';
+  static const String appName = 'صنْعَة';
   static const String appTagline = 'صيانة منزلية بثقة';
 
   // Onboarding - Screen 1: Welcome
-  static const String welcomeTitle = 'مرحبًا بك في سَنْعَة';
+  static const String welcomeTitle = 'مرحبًا بك في صنْعَة';
   static const String welcomeDescription =
       'المنصة التي تربط بين العملاء المحترفين والحرفيين الموثوقين لخدمات الصيانة المنزلية';
 
