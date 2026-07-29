@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:san3a/features/onboarding/presentation/screens/home_page.dart';
 import 'package:san3a/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:san3a/features/onboarding/presentation/screens/profile_screen.dart';
 import 'package:san3a/thefanypov/fany_home_page.dart';
 
 import 'core/routes/app_routes.dart';

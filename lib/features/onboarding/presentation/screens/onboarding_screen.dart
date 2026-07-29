@@ -123,12 +123,11 @@ class OnboardingScreen extends StatelessWidget {
     text: AppStrings.continueText,
     isEnabled: provider.isAccountSelected,
     onPressed: () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRoutes.login,
-        (route) => false,
-        arguments: provider.selectedAccountType,
-      );
+     Navigator.pushNamed(
+  context,
+  AppRoutes.login,
+  arguments: provider.selectedAccountType,
+);
     },
   );
 }}

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:san3a/features/onboarding/presentation/screens/Tech_support_screen.dart';
 
 import '../../../../core/routes/app_routes.dart';
 import 'app_shared.dart';
 import 'bottom_nav.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -710,9 +712,12 @@ class _ProfileScreenState extends State<ProfileScreen>
           Navigator.pushNamed(context, AppRoutes.technicians);
         } else if (label == 'الإشعارات') {
           Navigator.pushNamed(context, AppRoutes.orders);
-        } else if (label == 'الدعم') {
-          Navigator.pushNamed(context, AppRoutes.settings);
-        }
+       } else if (label == 'الدعم') {
+      Navigator.push(
+      context,
+     MaterialPageRoute(builder: (_) => const TechSupportScreen()),
+  );
+}
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),

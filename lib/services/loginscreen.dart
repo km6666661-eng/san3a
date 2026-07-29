@@ -145,25 +145,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            shape: BoxShape.circle,
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
-                            constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              if (Navigator.canPop(context)) {
-                                Navigator.pop(context);
-                              }
-                            },
-                          ),
-                        ),
-                      ),
+                   Align(
+          alignment: Alignment.topRight,
+          child: Container(
+          decoration: BoxDecoration(
+           color: const Color(0xFFE8F0FE),
+          shape: BoxShape.circle,
+    ),
+          child: IconButton(
+           icon: const Icon(Icons.arrow_forward_ios, color: Color(0xFF1557D0), size: 16),
+           constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+          padding: EdgeInsets.zero,
+         onPressed: () => Navigator.pop(context),
+    ),
+  ),
+),
                       const SizedBox(height: 14),
                       const Text(
                         'مرحباً بعودتك!',
