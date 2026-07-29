@@ -53,7 +53,7 @@ class San3aApp extends StatelessWidget {
         initialRoute: AppRoutes.onboarding,
         routes: AppRoutes.routes,
         onGenerateRoute: AppRoutes.onGenerateRoute,
-        
+       
         
       ),
     );
